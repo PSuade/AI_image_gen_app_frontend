@@ -1,23 +1,16 @@
-import logo from './logo.svg';
+import React, { useState } from 'react'
 import './App.css';
+import { AppMenuBar, SignupForm } from './components';
 
-function App() {
+const App = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const toggleModal = () => setIsModalOpen(!isModalOpen);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <AppMenuBar isUserSignedIn={false} onSignupButtonClick={toggleModal} />
+      <SignupForm isModalOpen={isModalOpen} onSubmit={() => console.log("i submitted")} onClose={toggleModal} />
     </div>
   );
 }
